@@ -46,6 +46,9 @@ public class User {
     @Column(name = "role", nullable = false, length = 30)
     private String role;
 
+    @Column(name = "image", nullable = true, length = 255)
+    private String image;
+
     @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
     private Boolean status;
 
