@@ -18,10 +18,13 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long category_id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
+
+    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    private Boolean status;
 
     @OneToMany(mappedBy = "category")
     private Set<Course> courses;

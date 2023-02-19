@@ -22,7 +22,7 @@ public class CategoryController {
     private CategoryService service;
 
     //Get all
-    @GetMapping()
+    @GetMapping("/")
     public ResponseEntity<CustomResponse<List<Category>>> getAll() {
         return new ResponseEntity<>(this.service.getAll(), HttpStatus.OK);
     }
@@ -40,9 +40,15 @@ public class CategoryController {
     }
 
     //Update
-    @PutMapping("/")
-    public ResponseEntity<CustomResponse<Category>> update(@RequestBody CategoryDto category) {
-        return new ResponseEntity<>(this.service.update(category.castToCategory()), HttpStatus.CREATED);
+    @PutMapping("/{id:[0-9]+}")
+    public ResponseEntity<CustomResponse<Category>> update(@PathVariable @Valid long id ,@RequestBody CategoryDto category) {
+        return new ResponseEntity<>(this.service.update(id, category.castToCategory()), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id:[0-9]+}")
+    public ResponseEntity<CustomResponse<Integer>> enableOrDisable(@PathVariable Long id ,@RequestBody CategoryDto category){
+        category.setId(id);
+        return new ResponseEntity<>(this.service.changeStatus(category.castToCategory()), HttpStatus.OK);
     }
 
 }

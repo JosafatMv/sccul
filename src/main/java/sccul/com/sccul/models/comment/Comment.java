@@ -17,7 +17,7 @@ import sccul.com.sccul.models.user.User;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long comment_id;
+    private Long id;
 
     @Column(name = "comment", nullable = false, columnDefinition = "text")
     private String comment;

@@ -16,7 +16,7 @@ import sccul.com.sccul.models.user.User;
 public class BankCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bank_card_id;
+    private Long id;
 
     @Column(name = "card_number", nullable = false, length = 16, unique = true, columnDefinition = "bigint")
     private String card_number;

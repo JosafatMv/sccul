@@ -17,7 +17,7 @@ import sccul.com.sccul.models.user.User;
 public class AnswerSurvey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long answer_survey_id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "survey_id", nullable = false)

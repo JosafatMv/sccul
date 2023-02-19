@@ -23,7 +23,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
@@ -41,12 +41,12 @@ public class User {
     private String password;
 
     @Column(name = "phone_number", nullable = false, length = 20, unique = true)
-    private String phone_number;
+    private String phoneNumber;
 
     @Column(name = "role", nullable = false, length = 30)
     private String role;
 
-    @Column(name = "image", nullable = true, length = 255)
+    @Column(name = "image", length = 255)
     private String image;
 
     @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")

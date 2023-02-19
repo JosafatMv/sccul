@@ -23,7 +23,7 @@ import java.util.Set;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long course_id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;

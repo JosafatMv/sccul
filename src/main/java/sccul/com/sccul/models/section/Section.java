@@ -16,7 +16,7 @@ import sccul.com.sccul.models.course.Course;
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long section_id;
+    private Long id;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
