@@ -19,16 +19,19 @@ public class BankCard {
     private Long id;
 
     @Column(name = "card_number", nullable = false, length = 16, unique = true, columnDefinition = "bigint")
-    private String card_number;
+    private String cardnumber;
 
     @Column(name = "owner_name", nullable = false, length = 255)
-    private String owner_name;
+    private String ownername;
 
     @Column(name = "card_expiration", nullable = false, columnDefinition = "date")
-    private String card_expiration;
+    private String cardexpiration;
 
     @Column(name = "card_cvv", nullable = false, length = 3, columnDefinition = "int")
-    private String card_cvv;
+    private String cardcvv;
+    
+    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    private Boolean status;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

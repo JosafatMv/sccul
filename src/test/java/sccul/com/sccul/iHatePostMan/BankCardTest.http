@@ -1,0 +1,50 @@
+### 
+GET http://localhost:8080/api/bankCards/ HTTP/1.1
+
+###
+POST http://localhost:8080/api/bankCards/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "cardnumber": "4152411245613214",
+    "cardexpiration":"20011201",
+    "cardcvv":"123",
+    "user":{
+        "id": 1,
+        "name": "Josafat",
+        "surname": "Muñoz",
+        "lastname": "Valverde",
+        "email": "20213tn124@utez.edu.mx",
+        "password": "12345",
+        "phoneNumber": "7771096584",
+        "role": "admin"
+    }
+}
+
+###
+PUT http://localhost:8080/api/bankCards/4 HTTP/1.1
+Content-Type: application/json
+
+{
+    "cardnumber": "1255123456789123",
+    "cardexpiration":"20011201",
+    "cardcvv":"123",
+    "user":{
+        "id": 1,
+        "name": "Josafat",
+        "surname": "Muñoz",
+        "lastname": "Valverde",
+        "email": "20213tn124@utez.edu.mx",
+        "password": "12345",
+        "phoneNumber": "7771096584",
+        "role": "admin"
+    }
+}
+
+###
+PATCH http://localhost:8080/api/bankCards/4 HTTP/1.1
+Content-Type: application/json
+
+{
+    "status": 0
+}

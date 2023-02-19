@@ -1,0 +1,38 @@
+###
+GET http://localhost:8080/api/users/ HTTP/1.1
+
+###
+POST http://localhost:8080/api/users/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Josafat",
+    "surname": "Muñoz",
+    "lastname": "Valverde",
+    "email": "20213tn124@utez.edu.mx",
+    "password": "12345",
+    "phoneNumber": "7771096584",
+    "role": "admin"
+}
+
+###
+PUT http://localhost:8080/api/users/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Josafat",
+    "surname": "Pug",
+    "lastname": "Puchis",
+    "email": "20213tn124@utez.edu.mx",
+    "password": "12345",
+    "phoneNumber": "7771096584",
+    "role": "admin"
+}
+
+###
+PATCH  http://localhost:8080/api/users/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "status": 0
+}
