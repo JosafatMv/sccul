@@ -27,7 +27,7 @@ public class UserController {
 
     //Get one by id
     @GetMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<User>> getOne(@PathVariable long id){
+    public ResponseEntity<CustomResponse<User>> getOne(@PathVariable long id) {
         return new ResponseEntity<>(this.service.getOne(id), HttpStatus.OK);
     }
 
@@ -39,13 +39,13 @@ public class UserController {
 
     //Update
     @PutMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<User>> update(@Valid @PathVariable long id ,@RequestBody UserDto user) {
+    public ResponseEntity<CustomResponse<User>> update(@Valid @PathVariable long id, @RequestBody UserDto user) {
         user.setId(id);
         return new ResponseEntity<>(this.service.update(user.castToUser()), HttpStatus.OK);
     }
 
     @PatchMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Integer>> enableOrDisable(@PathVariable Long id ,@RequestBody UserDto user){
+    public ResponseEntity<CustomResponse<Integer>> enableOrDisable(@PathVariable Long id, @RequestBody UserDto user) {
         user.setId(id);
         return new ResponseEntity<>(this.service.changeStatus(user.castToUser()), HttpStatus.OK);
     }

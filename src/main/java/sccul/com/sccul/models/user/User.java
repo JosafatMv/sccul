@@ -1,5 +1,6 @@
 package sccul.com.sccul.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class User {
     private String email;
 
     @Column(name = "password", nullable = false, length = 255)
+    @JsonIgnore
     private String password;
 
     @Column(name = "phone_number", nullable = false, length = 20, unique = true)
@@ -53,18 +55,23 @@ public class User {
     private Boolean status;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<AnswerSurvey> answerSurveys;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<BankCard> bankCards;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Score> scores;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Inscription> inscriptions;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<Comment> comments;
 
 }
