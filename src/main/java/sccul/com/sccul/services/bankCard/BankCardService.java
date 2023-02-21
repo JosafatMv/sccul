@@ -16,7 +16,7 @@ public class BankCardService {
     @Autowired
     private BankCardRepository repository;
 
-    //Get all (No creo que se ocupe un get all alv pero ahi va por que no tengo otra cosa que hacer, ayuda me pica un webo)
+    //Get all (No creo que se ocupe un get all alv pero ahi va por que no tengo otra cosa que hacer)
     @Transactional(readOnly = true)
     public CustomResponse<List<BankCard>> getAll(){
         return new CustomResponse<List<BankCard>>(
@@ -49,7 +49,7 @@ public class BankCardService {
     //Insert
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<BankCard> insert(BankCard bankCard){
-        if (this.repository.existsByCardnumber(bankCard.getCardnumber())){
+        if (this.repository.existsByCardNumber(bankCard.getCardNumber())){
             return new CustomResponse<BankCard>(
                 null,
                 true,

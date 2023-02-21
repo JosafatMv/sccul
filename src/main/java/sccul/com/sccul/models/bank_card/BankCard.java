@@ -1,5 +1,6 @@
 package sccul.com.sccul.models.bank_card;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,21 +20,22 @@ public class BankCard {
     private Long id;
 
     @Column(name = "card_number", nullable = false, length = 16, unique = true, columnDefinition = "bigint")
-    private String cardnumber;
+    private String cardNumber;
 
     @Column(name = "owner_name", nullable = false, length = 255)
-    private String ownername;
+    private String ownerName;
 
-    @Column(name = "card_expiration", nullable = false, columnDefinition = "date")
-    private String cardexpiration;
+    @Column(name = "card_expiration", nullable = false, length = 5)
+    private String cardExpiration;
 
     @Column(name = "card_cvv", nullable = false, length = 3, columnDefinition = "int")
-    private String cardcvv;
+    private String cardCvv;
     
     @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
     private Boolean status;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 }

@@ -20,21 +20,21 @@ public class BankCardDto{
 
     @NotEmpty(message = "Campo obligatorio")
     @Size(max = 16,min = 16, message = "El Numero de la tarjeta debe tener 16 caracteres")
-    private String cardnumber;
+    private String cardNumber;
 
     @NotEmpty(message = "Campo obligatorio")
-    @Size(max = 8,min = 8, message = "El Numero de expiracion debe tener 10 caracteres")
-    private String cardexpiration;
+    @Size(max = 5,min = 5, message = "La fecha de expiración debe tener 5 caracteres")
+    private String cardExpiration;
     
     @NotEmpty(message = "Campo obligatorio")
     @Size(max = 3,min = 3, message = "El Numero de cvv debe tener 3 caracteres")
-    private String cardcvv;
+    private String cardCvv;
 
     private User user ;
 
     private Boolean status;
 
     public BankCard castToBankCard() {
-        return new BankCard(getId(),getCardnumber(),getUser().getName(),getCardexpiration(),getCardcvv(),getStatus(),getUser());
+        return new BankCard(getId(),getCardNumber(),getUser().getName(),getCardExpiration(),getCardCvv(),getStatus(),getUser());
     }
 }

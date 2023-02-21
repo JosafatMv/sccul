@@ -59,7 +59,6 @@ public class User {
     private Set<AnswerSurvey> answerSurveys;
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
     private Set<BankCard> bankCards;
 
     @OneToMany(mappedBy = "user")

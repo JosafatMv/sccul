@@ -10,12 +10,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface BankCardRepository extends JpaRepository<BankCard,Long> {
     Optional<BankCard> findById(Long id);
-    Optional<BankCard> findByCardnumber(String card_number);
-    Optional<List<BankCard>> findByOwnername(String owner_name);
-    boolean existsByCardnumber(String card_number);
+    Optional<BankCard> findByCardNumber(String card_number);
+    Optional<List<BankCard>> findByOwnerName(String owner_name);
+    boolean existsByCardNumber(String card_number);
 
-    boolean existsByCardnumberAndIdNot(String card_number, Long id);
-    boolean existsByOwnernameAndIdNot(String owner_name, Long id);
+    boolean existsByCardNumberAndIdNot(String card_number, Long id);
+    boolean existsByOwnerNameAndIdNot(String owner_name, Long id);
 
     @Modifying
     @Query(
