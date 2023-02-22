@@ -31,8 +31,8 @@ public class CourseDto {
 
     private Category category;
 
-    @DecimalMin(value = "1.0", message = "El descuento debe ser mayor o igual a 0.0", inclusive = false)
-    @Max(value = 100, message = "El descuento debe ser menor o igual a 100")
+    @DecimalMin(value = "1.0", message = "El descuento debe ser mayor o igual a 0.0")
+    @DecimalMax(value = "100.0", message = "El descuento debe ser menor o igual a 100")
     private Double discount;
 
     public Course castToCourse(){
