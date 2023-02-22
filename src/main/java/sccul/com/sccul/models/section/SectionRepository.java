@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface SectionRepository extends JpaRepository<Section, Long> {
 
-    Optional<List<Section>> findByCourse(Long id);
+    Optional<List<Section>> findByCourse(Course course);
+    boolean existsByName(String name);
 
 }
