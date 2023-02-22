@@ -1,0 +1,26 @@
+###
+GET http://localhost:8080/api/scores/1
+
+###
+GET http://localhost:8080/api/scores/avg/1
+
+###
+GET http://localhost:8080/api/scores/1/1
+
+###
+POST http://localhost:8080/api/scores/
+Content-Type: application/json
+
+{
+    
+    "user": {
+        "id": 1
+    },
+    "course": {
+        "id": 1
+    },
+    "score": 4
+}
+
+###
+PUT http://localhost:8080/api/courses/1

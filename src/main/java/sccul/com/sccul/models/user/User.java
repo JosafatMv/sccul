@@ -14,6 +14,8 @@ import sccul.com.sccul.models.score.Score;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -59,6 +61,7 @@ public class User {
     private Set<AnswerSurvey> answerSurveys;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<BankCard> bankCards;
 
     @OneToMany(mappedBy = "user")

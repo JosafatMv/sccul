@@ -35,18 +35,17 @@ public class BankCardController {
     //Insert
     @PostMapping("/")
     public ResponseEntity<CustomResponse<BankCard>> insert(@Valid @RequestBody BankCardDto bankCard){
-        System.out.println("aqui llego");
         return new ResponseEntity<>(this.service.insert(bankCard.castToBankCard()),HttpStatus.CREATED);
     }
 
     //Update
     @PutMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<BankCard>> update(@PathVariable @Valid long id, @RequestBody BankCardDto bankCard){
+    public ResponseEntity<CustomResponse<BankCard>> update(@PathVariable  long id,@Valid @RequestBody BankCardDto bankCard){
         return new ResponseEntity<>(this.service.update(id,bankCard.castToBankCard()),HttpStatus.OK);
     }
 
     @PatchMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Integer>> enableOrDisable(@PathVariable long id, @RequestBody BankCard bankCard){
+    public ResponseEntity<CustomResponse<Integer>> enableOrDisable(@PathVariable long id,@Valid @RequestBody BankCard bankCard){
         bankCard.setId(id);
         return new ResponseEntity<>(this.service.changeStatus(bankCard),HttpStatus.OK);
     }
