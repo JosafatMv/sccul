@@ -23,7 +23,7 @@ public class ScoreDto {
     private Course course;
 
     @NotNull(message = "Campo obligatorio")
-    @DecimalMin(value = "0", message = "El score debe ser mayor o igual a 0")
+    @DecimalMin(value = "1", message = "El score debe ser mayor o igual a 1")
     @DecimalMax(value = "5", message = "El score debe ser menor o igual a 5")
     private Long score;  
 

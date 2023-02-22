@@ -1,5 +1,6 @@
 package sccul.com.sccul.models.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,6 +52,7 @@ public class Course {
     private Set<Survey> surveys;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private Set<Score> scores;
 
     @OneToMany(mappedBy = "course")

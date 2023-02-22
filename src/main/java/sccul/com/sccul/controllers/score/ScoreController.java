@@ -22,7 +22,7 @@ public class ScoreController {
     @Autowired
     private ScoreService service;
 
-    @GetMapping("/{id:[0-9]+}")
+    @GetMapping("/course/{id:[0-9]+}")
     public ResponseEntity<CustomResponse<List<Score>>> getByCourse(@PathVariable Long id) {
         Course course = new Course();
         course.setId(id);
@@ -34,7 +34,7 @@ public class ScoreController {
         return new ResponseEntity<>(this.service.getAverageScore(id), HttpStatus.OK );
     }
 
-    @GetMapping("/{userId:[0-9]+}/{courseId:[0-9]+}")
+    @GetMapping("/user/{userId:[0-9]+}/course/{courseId:[0-9]+}")
     public ResponseEntity<CustomResponse <Score>> getByUserAndCourse(@PathVariable Long userId, @PathVariable Long courseId) {
         Course course = new Course();
         course.setId(courseId);

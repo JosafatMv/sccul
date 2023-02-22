@@ -17,7 +17,7 @@ Content-Type: application/json
         "id": 1
     },
     "course": {
-        "id": 1
+        "id": 2
     },
     "score": 4
 }
