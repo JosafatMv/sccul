@@ -37,6 +37,9 @@ public class Course {
     @Column(name = "price", nullable = false, columnDefinition = "double")
     private String price;
 
+    @Column(name = "discount", columnDefinition = "double")
+    private Double discount;
+
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;

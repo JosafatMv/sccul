@@ -1,0 +1,23 @@
+###
+GET http://localhost:8080/api/courses/
+
+###
+GET http://localhost:8080/api/courses/1
+
+###
+POST http://localhost:8080/api/courses/
+Content-Type: application/json
+
+{
+  "name": "Course 1",
+  "description": "Course 1 description",
+  "discount": null,
+  "price": 100.50,
+  "image": "https://res.cloudinary.com/sigsa/image/upload/v1660851428/products/nvn3alt79ctkmdruafba.png",
+  "category": {
+        "id": 1
+   }
+}
+
+###
+PUT http://localhost:8080/api/courses/1

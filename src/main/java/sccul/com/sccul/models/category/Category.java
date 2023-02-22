@@ -1,5 +1,6 @@
 package sccul.com.sccul.models.category;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Category {
     private Boolean status;
 
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private Set<Course> courses;
 
 }
