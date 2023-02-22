@@ -1,5 +1,6 @@
 package sccul.com.sccul.models.section;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +25,9 @@ public class Section {
     @Column(name = "video", nullable = false, length = 255)
     private String video;
 
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 }
