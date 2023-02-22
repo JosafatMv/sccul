@@ -1,0 +1,17 @@
+GET http://localhost:8080/api/sections/course/1
+
+###
+GET http://localhost:8080/api/sections/
+
+###
+POST http://localhost:8080/api/sections/
+Content-Type: application/json
+
+{
+  "name": "seccion amarilla",
+  "video": "hola.mp4",
+  "course": {
+    "id": 1
+  }
+}
+###
