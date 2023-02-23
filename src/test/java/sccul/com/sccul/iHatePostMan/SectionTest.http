@@ -15,3 +15,13 @@ Content-Type: application/json
   }
 }
 ###
+PUT http://localhost:8080/api/sections/1
+Content-Type: application/json
+
+{
+  "name": "seccion azul",
+  "video": "hola.mp6",
+  "course": {
+    "id": 1
+  }
+}
