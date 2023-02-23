@@ -3,6 +3,7 @@ package sccul.com.sccul.services.section;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sccul.com.sccul.models.category.Category;
 import sccul.com.sccul.models.course.Course;
 import sccul.com.sccul.models.course.CourseRepository;
 import sccul.com.sccul.models.score.Score;
@@ -10,6 +11,7 @@ import sccul.com.sccul.models.section.Section;
 import sccul.com.sccul.models.section.SectionRepository;
 import sccul.com.sccul.utils.CustomResponse;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -62,6 +64,38 @@ public class SectionService {
         );
     }
 
+
+    //update
+    @Transactional(rollbackFor = {SQLException.class})
+    public CustomResponse<Section> update(long id, Section section){
+        if (this.repository.existsByName(section.getName())) {
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    400,
+                    "Ya existe una sección con ese nombre"
+            );
+        }
+
+
+        if (!this.repository.existsById(id)) {
+            return new CustomResponse<Section>(
+                    null,
+                    true,
+                    400,
+                    "La sección no existe"
+            );
+        }
+
+
+        return new CustomResponse<Section>(
+                this.repository.saveAndFlush(section),
+                false,
+                200,
+                "La sección fue modificada correctamente"
+        );
+    }
+
     @Transactional(readOnly = true)
     public CustomResponse<List<Section>> getByCourse(long id) {
         if (!this.courseRepository.existsById(id)) {
@@ -72,7 +106,6 @@ public class SectionService {
                     "El curso no existe"
             );
         }
-
 
         Course courseToFind = new Course();
         courseToFind.setId(id);
@@ -85,6 +118,7 @@ public class SectionService {
         );
     }
 
+
     @Transactional(readOnly = true)
     public CustomResponse<List<Section>> getAll() {
         return new CustomResponse<>(
@@ -94,4 +128,6 @@ public class SectionService {
                 "Ok"
         );
     }
+
+
 }
