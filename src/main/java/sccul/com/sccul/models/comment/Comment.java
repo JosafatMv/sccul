@@ -1,5 +1,6 @@
 package sccul.com.sccul.models.comment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,8 +29,9 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
+    @JsonIgnore
     private Course course;
 
-    @Column(name = "created_at", nullable = false, columnDefinition = "datetime default current_timestamp")
+    @Column(name = "created_at", nullable = false, columnDefinition = "datetime default current_timestamp", insertable = false, updatable = false)
     private String created_at;
 }

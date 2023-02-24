@@ -39,8 +39,8 @@ public class CommentController {
     }
 
     //Update
-    @PostMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Comment>> update(@PathVariable @Valid long id ,@RequestBody CommentDto comment) {
+    @PatchMapping("/{id:[0-9]+}")
+    public ResponseEntity<CustomResponse<Integer>> update(@PathVariable long id ,@Valid @RequestBody CommentDto comment) {
         return new ResponseEntity<>(this.service.update(id, comment.castToComment()), HttpStatus.OK);
     }
 }

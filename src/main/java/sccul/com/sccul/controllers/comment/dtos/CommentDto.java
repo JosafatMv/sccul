@@ -16,9 +16,8 @@ public class CommentDto {
     private String comment;
     private User user;
     private Course course;
-    private String created_at;
 
     public Comment castToComment() {
-        return new Comment(getId(), getComment(), getUser(), getCourse(), getCreated_at());
+        return new Comment(getId(), getComment(), getUser(), getCourse(), null);
     }
 }

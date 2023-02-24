@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sccul.com.sccul.models.comment.Comment;
 import sccul.com.sccul.models.comment.CommentRepository;
+import sccul.com.sccul.models.course.CourseRepository;
+import sccul.com.sccul.models.user.UserRepository;
 import sccul.com.sccul.utils.CustomResponse;
 
 import java.util.List;
@@ -14,6 +16,12 @@ import java.util.List;
 public class CommentService {
     @Autowired
     private CommentRepository repository;
+
+    @Autowired
+    private CourseRepository courseRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     //get all
     @Transactional(readOnly = true)
@@ -48,16 +56,37 @@ public class CommentService {
     //insert
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<Comment> insert(Comment comment){
-        if (this.repository.existsByComment(comment.getComment())){
+
+        if(this.repository.existsByUserAndCourse(comment.getUser(), comment.getCourse())){
             return new CustomResponse<Comment>(
                 null,
                 true,
                 400,
-                "Comentario ya registrado"
+                "El usuario ya ha comentado este curso"
             );
         }
+
+        if(!this.courseRepository.existsById(comment.getCourse().getId())){
+            return new CustomResponse<Comment>(
+                null,
+                true,
+                400,
+                "El curso no existe"
+            );
+        }
+
+        if(!this.userRepository.existsById(comment.getUser().getId())){
+            return new CustomResponse<Comment>(
+                null,
+                true,
+                400,
+                "El usuario no existe"
+            );
+        }
+
+        //Puede que necesitemos traer los datos actualizados de la base
         return new CustomResponse<Comment>(
-            this.repository.saveAndFlush(comment),
+                this.repository.saveAndFlush(comment),
             false,
             200,
             "El comentario fue registrado correctamente"
@@ -66,18 +95,19 @@ public class CommentService {
 
     //update
     @Transactional(rollbackFor = {Exception.class})
-    public CustomResponse<Comment> update(Long id, Comment comment){
+    public CustomResponse<Integer> update(Long id, Comment comment){
         if(!this.repository.existsById(id)){
-            return new CustomResponse<Comment>(
+            return new CustomResponse<>(
                 null,
                 true,
                 400,
                 "El comentario no existe"
             );
         }
+
         comment.setId(id);
-        return new CustomResponse<Comment>(
-            this.repository.saveAndFlush(comment),
+        return new CustomResponse<Integer>(
+            this.repository.updateCommentById(comment.getComment(), comment.getId()),
             false,
             200,
             "El comentario fue actualizado correctamente"
