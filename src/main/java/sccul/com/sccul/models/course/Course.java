@@ -56,9 +56,11 @@ public class Course {
     private Set<Score> scores;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private Set<Comment> comments;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private Set<Inscription> inscriptions;
 
 }

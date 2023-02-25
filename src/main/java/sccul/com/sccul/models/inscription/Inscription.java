@@ -28,7 +28,7 @@ public class Inscription {
     private Course course;
 
     @Column(name = "full_percentage", nullable = false, columnDefinition = "double")
-    private Double full_percentage;
+    private Double fullPercentage;
 
     @Column(name = "status", nullable = false, length = 20)
     private String status;
