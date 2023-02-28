@@ -6,15 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sccul.com.sccul.models.answer_survey.AnswerSurvey;
+import sccul.com.sccul.models.answer.Answer;
 import sccul.com.sccul.models.bank_card.BankCard;
 import sccul.com.sccul.models.comment.Comment;
 import sccul.com.sccul.models.inscription.Inscription;
 import sccul.com.sccul.models.score.Score;
+import sccul.com.sccul.models.user_answer.UserAnswer;
 
 import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -58,10 +57,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private Set<AnswerSurvey> answerSurveys;
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
     private Set<BankCard> bankCards;
 
     @OneToMany(mappedBy = "user")
@@ -75,5 +70,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Set<Comment> comments;
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private UserAnswer userAnswer;
 
 }

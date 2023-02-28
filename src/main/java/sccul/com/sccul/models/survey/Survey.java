@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sccul.com.sccul.models.answer_survey.AnswerSurvey;
 import sccul.com.sccul.models.course.Course;
+import sccul.com.sccul.models.questions.Question;
 
 import java.util.Set;
 
@@ -21,14 +21,11 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "question", nullable = false, length = 255)
-    private String question;
-
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
     @OneToMany(mappedBy = "survey")
-    private Set<AnswerSurvey> answer_surveys;
+    private Set<Question> questions;
 
 }

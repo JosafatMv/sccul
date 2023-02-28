@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 @CrossOrigin(origins = {"*"})
 public class UserController {
-    @Autowired
+@Autowired
     private UserService service;
 
     //Get all
