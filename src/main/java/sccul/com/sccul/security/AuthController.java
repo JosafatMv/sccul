@@ -43,4 +43,9 @@ public class AuthController {
         }
     }
 
+    @GetMapping("/renew")
+    public ResponseEntity<CustomResponse<String>> renewToken(@RequestHeader("Authorization") String token) {
+        return new ResponseEntity<>(this.jwtService.renewToken(token), HttpStatus.OK);
+    }
+
 }

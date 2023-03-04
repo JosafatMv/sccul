@@ -22,6 +22,8 @@ public class BankCardDto{
     @Size(max = 16,min = 16, message = "El Numero de la tarjeta debe tener 16 caracteres")
     private String cardNumber;
 
+    private String alias;
+
     @NotEmpty(message = "Campo obligatorio")
     @Size(max = 5,min = 5, message = "La fecha de expiración debe tener 5 caracteres")
     private String cardExpiration;
@@ -35,6 +37,6 @@ public class BankCardDto{
     private Boolean status;
 
     public BankCard castToBankCard() {
-        return new BankCard(getId(),getCardNumber(),getUser().getName(),getCardExpiration(),getCardCvv(),getStatus(),getUser());
+        return new BankCard(getId(),getCardNumber(),getUser().getName(),getAlias(),getCardExpiration(),getCardCvv(),getStatus(),getUser());
     }
 }

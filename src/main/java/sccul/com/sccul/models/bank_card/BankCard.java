@@ -25,6 +25,9 @@ public class BankCard {
     @Column(name = "owner_name", nullable = false, length = 255)
     private String ownerName;
 
+    @Column(name = "alias", length = 255)
+    private String alias;
+
     @Column(name = "card_expiration", nullable = false, length = 5)
     private String cardExpiration;
 

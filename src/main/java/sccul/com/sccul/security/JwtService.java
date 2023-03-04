@@ -7,6 +7,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import sccul.com.sccul.utils.CustomResponse;
 
 import java.security.Key;
 import java.util.Date;
@@ -58,6 +59,23 @@ public class JwtService {
         return createToken(claims,userName);
     }
 
+    public CustomResponse<String> renewToken(String bearerToken){
+
+        String token = null;
+        String username = null;
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            token = bearerToken.substring(7);
+            username = extractUsername(token);
+
+            String newToken = createToken(new HashMap<>(),username);
+
+            return new CustomResponse<String>(newToken, false, 200, "Token renovado");
+
+        }
+
+        return new CustomResponse<String>(null, true, 401, "Token inválido");
+    }
+
     private String createToken(Map<String, Object> claims, String userName) {
         return Jwts.builder()
                 .setClaims(claims)
@@ -71,4 +89,5 @@ public class JwtService {
         byte[] keyBytes= Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }
