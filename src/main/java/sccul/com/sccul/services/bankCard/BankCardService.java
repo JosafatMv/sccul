@@ -27,6 +27,58 @@ public class BankCardService {
         );
     }
 
+    //Get all by user id
+    @Transactional(readOnly = true)
+    public CustomResponse<List<BankCard>> getAllByUserId(Long userId){
+
+        if(!this.repository.existsByUserId(userId)){
+            return new CustomResponse<>(
+                    null,
+                    false,
+                    400,
+                    "No existe el usuario con ese id"
+            );
+        }
+
+        return new CustomResponse<List<BankCard>>(
+                this.repository.findAllByUserId(userId),
+                false,
+                200,
+                "Ok"
+        );
+    }
+
+    //Get one by user id
+    @Transactional(readOnly = true)
+    public CustomResponse<BankCard> getOneByUserId(Long userId, Long id){
+        if(!this.repository.existsByUserId(userId)){
+            return new CustomResponse<BankCard>(
+                null,
+                false,
+                400,
+                "No existe el usuario con ese id"
+            );
+        }
+
+
+
+        if(!this.repository.existsByIdAndUserId(id, userId)){
+            return new CustomResponse<BankCard>(
+                null,
+                false,
+                400,
+                "No existe una tarjeta con ese id para ese usuario"
+            );
+        }
+
+        return new CustomResponse<BankCard>(
+            this.repository.findByUserIdAndId(userId, id),
+            false,
+            200,
+            "Ok"
+        );
+    }
+
     //Get one by id
     @Transactional(readOnly = true)
     public CustomResponse<BankCard> getOne(Long id){

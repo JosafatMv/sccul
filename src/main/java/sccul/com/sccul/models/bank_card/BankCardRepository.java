@@ -17,10 +17,20 @@ public interface BankCardRepository extends JpaRepository<BankCard,Long> {
     boolean existsByCardNumberAndIdNot(String card_number, Long id);
     boolean existsByOwnerNameAndIdNot(String owner_name, Long id);
 
+    boolean existsByUserId(Long userId);
+
+    boolean existsByIdAndUserId(long id, long user_id);
+
+    List<BankCard> findAllByUserId(long user_id);
+
+
     @Modifying
     @Query(
         value = "UPDATE bank_cards SET status = :status WHERE id = :id",nativeQuery = true
     )
     int updateStatusById(@Param("status") boolean status, @Param("id") Long id);
 
+    BankCard findByUserIdAndId(Long userId, Long id);
+
+    boolean existsByIdAndUserId(Long id, Long userId);
 }
