@@ -1,8 +1,6 @@
 package sccul.com.sccul.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -54,23 +52,31 @@ public class JwtService {
     }
 
 
-    public String generateToken(String userName){
-        Map<String,Object> claims=new HashMap<>();
-        return createToken(claims,userName);
+    public String generateToken(String userName) {
+        Map<String, Object> claims = new HashMap<>();
+        return createToken(claims, userName);
     }
 
-    public CustomResponse<String> renewToken(String bearerToken){
+    public CustomResponse<String> renewToken(String bearerToken) {
 
         String token = null;
         String username = null;
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            token = bearerToken.substring(7);
-            username = extractUsername(token);
+            try {
+                token = bearerToken.substring(7);
 
-            String newToken = createToken(new HashMap<>(),username);
+                if (isTokenExpired(token)) {
+                    return new CustomResponse<String>(null, true, 401, "Token caducado");
+                }
 
-            return new CustomResponse<String>(newToken, false, 200, "Token renovado");
+                System.out.println("Token renovado");
+                username = extractUsername(token);
 
+                String newToken = createToken(new HashMap<>(), username);
+                return new CustomResponse<String>(newToken, false, 200, "Token renovado");
+            } catch (JwtException e) {
+                return new CustomResponse<String>(null, true, 401, "Token caducado");
+            }
         }
 
         return new CustomResponse<String>(null, true, 401, "Token inválido");
@@ -81,12 +87,12 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(userName)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 
     private Key getSignKey() {
-        byte[] keyBytes= Decoders.BASE64.decode(SECRET);
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
