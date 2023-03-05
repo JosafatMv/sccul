@@ -1,4 +1,4 @@
-package sccul.com.sccul.models.survey;
+package sccul.com.sccul.models.surveyModels.survey;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

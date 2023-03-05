@@ -11,7 +11,7 @@ import sccul.com.sccul.models.comment.Comment;
 import sccul.com.sccul.models.inscription.Inscription;
 import sccul.com.sccul.models.score.Score;
 import sccul.com.sccul.models.section.Section;
-import sccul.com.sccul.models.survey.Survey;
+import sccul.com.sccul.models.surveyModels.survey.Survey;
 
 import java.util.Set;
 

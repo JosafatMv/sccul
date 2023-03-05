@@ -1,11 +1,11 @@
-package sccul.com.sccul.models.answer;
+package sccul.com.sccul.models.surveyModels.answer;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sccul.com.sccul.models.questions.Question;
+import sccul.com.sccul.models.surveyModels.questions.Question;
 
 @Entity
 @Table(name = "answers")

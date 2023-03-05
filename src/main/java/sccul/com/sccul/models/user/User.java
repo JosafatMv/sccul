@@ -3,12 +3,11 @@ package sccul.com.sccul.models.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import sccul.com.sccul.models.answer.Answer;
 import sccul.com.sccul.models.bank_card.BankCard;
 import sccul.com.sccul.models.comment.Comment;
 import sccul.com.sccul.models.inscription.Inscription;
 import sccul.com.sccul.models.score.Score;
-import sccul.com.sccul.models.user_answer.UserAnswer;
+import sccul.com.sccul.models.surveyModels.user_answer.UserAnswer;
 
 import java.util.Set;
 

@@ -1,8 +1,8 @@
-package sccul.com.sccul.models.user_answer;
+package sccul.com.sccul.models.surveyModels.user_answer;
 
 import jakarta.persistence.*;
 import lombok.*;
-import sccul.com.sccul.models.answer.Answer;
+import sccul.com.sccul.models.surveyModels.answer.Answer;
 import sccul.com.sccul.models.user.User;
 
 @Entity
