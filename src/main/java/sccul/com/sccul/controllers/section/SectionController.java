@@ -37,7 +37,7 @@ public class SectionController {
     }
 
     @PutMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Section>> update(@PathVariable @Valid long id, @RequestBody SectionDto section){
+    public ResponseEntity<CustomResponse<Section>> update(@PathVariable long id, @Valid @RequestBody SectionDto section){
         return new ResponseEntity<>(
                 this.service.update(id, section.castToSection()), HttpStatus.OK
         );
