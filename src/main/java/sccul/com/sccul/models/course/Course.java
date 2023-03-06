@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 import sccul.com.sccul.models.category.Category;
 import sccul.com.sccul.models.comment.Comment;
 import sccul.com.sccul.models.inscription.Inscription;
@@ -36,10 +37,19 @@ public class Course {
     private String image;
 
     @Column(name = "price", nullable = false, columnDefinition = "double")
-    private String price;
+    private Double price;
 
     @Column(name = "discount", columnDefinition = "double")
     private Double discount;
+
+    @Formula("(select count(*) from scores s where s.course_id = id)")
+    private Integer totalRatings;
+
+    @Formula("(select avg(s.score) from scores s where s.course_id = id)")
+    private Double averageRatings;
+
+    @Formula("(select count(*) from inscriptions i where i.course_id = id and i.status = 'comprado')")
+    private Integer totalParticipants;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
@@ -52,15 +62,12 @@ public class Course {
     private Set<Survey> surveys;
 
     @OneToMany(mappedBy = "course")
-    @JsonIgnore
     private Set<Score> scores;
 
     @OneToMany(mappedBy = "course")
-    @JsonIgnore
     private Set<Comment> comments;
 
     @OneToMany(mappedBy = "course")
-    @JsonIgnore
     private Set<Inscription> inscriptions;
 
 }

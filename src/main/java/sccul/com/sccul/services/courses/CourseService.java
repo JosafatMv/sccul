@@ -21,8 +21,17 @@ public class CourseService {
 
     @Transactional(readOnly = true)
     public CustomResponse<List<Course>> getAll(){
+
+        List<Course> courses = this.repository.findAll();
+
+//        courses.forEach(course -> {
+//            course.setTotalRatings(this.repository.countScoresByCourseId(course.getId()));
+//            course.setTotalParticipants(this.repository.totalParticipantsByCourseId(course.getId()));
+//            course.setAverageRatings(this.repository.averageScoresByCourseId(course.getId()) != null ? this.repository.averageScoresByCourseId(course.getId()) : 0.0);
+//        });
+
         return new CustomResponse<>(
-                this.repository.findAll(),
+                courses,
                 false,
                 200,
                 "Ok"

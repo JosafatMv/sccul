@@ -27,7 +27,7 @@ public class CourseDto {
 
     @NotEmpty(message = "Campo obligatorio")
     @DecimalMin(value = "0.0", message = "El precio debe ser mayor o igual a 0.0")
-    private String price;
+    private Double price;
 
     private Category category;
 
@@ -36,6 +36,6 @@ public class CourseDto {
     private Double discount;
 
     public Course castToCourse(){
-        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(), getCategory(), null, null, null, null, null);
+        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(),0,0.0,0, getCategory(), null, null, null, null, null);
     }
 }
