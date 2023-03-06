@@ -60,6 +60,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writeValue(response.getWriter(), customResponse);
+
+            return;
         } catch (SignatureException e){
             CustomResponse<String> customResponse = new CustomResponse<>();
             customResponse.setError(true);
@@ -71,8 +73,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writeValue(response.getWriter(), customResponse);
-        }
 
+            return;
+        }
 
         filterChain.doFilter(request, response);
     }
