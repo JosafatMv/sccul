@@ -9,7 +9,7 @@ Content-Type: application/json
     "name": "Josafat",
     "surname": "Muñoz",
     "lastname": "Valverde",
-    "email": "20213tn124@utez.edu.mx",
+    "email": "20213tn128@utez.edu.mx",
     "password": "12345",
     "phoneNumber": "7771096584",
     "role": "admin"
@@ -23,7 +23,7 @@ Content-Type: application/json
     "name": "Josafat",
     "surname": "Pug",
     "lastname": "Puchis",
-    "email": "20213tn124@utez.edu.mx",
+    "email": "20213tn120@utez.edu.mx",
     "password": "12345",
     "phoneNumber": "7771096584",
     "role": "admin"
