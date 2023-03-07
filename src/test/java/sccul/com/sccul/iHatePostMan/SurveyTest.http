@@ -1,0 +1,12 @@
+###
+GET http://localhost:8080/api/surveys/ HTTP/1.1
+
+
+###
+POST http://localhost:8080/api/surveys/ HTTP/1.1
+Authorization: Bearer {eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMDIxM3RuMDM4QHV0ZXouZWR1Lm14IiwiaWF0IjoxNjc4MjEzNjM3LCJleHAiOjE2NzgyMTU0Mzd9.L1QZG8A0MlwDy3tV3SpOtHUOB3epxIDB2RWjA2D_gRk}
+Content-Type: application/json
+
+{
+
+}

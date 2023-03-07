@@ -8,6 +8,8 @@ import sccul.com.sccul.models.surveyModels.answer.Answer;
 import sccul.com.sccul.models.surveyModels.answer.AnswerRepository;
 import sccul.com.sccul.utils.CustomResponse;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AnswerService {
@@ -18,7 +20,7 @@ public class AnswerService {
 
     //getbyquestion
     @Transactional(readOnly = true)
-    public CustomResponse<Answer> getByQuestionId(long id){
+    public CustomResponse<List <Answer>> getByQuestionId(long id){
         if(!this.repository.existsById(id)){
             return new CustomResponse<>(
                     null,

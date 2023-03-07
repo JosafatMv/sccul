@@ -6,6 +6,7 @@ GET http://localhost:8080/api/courses/1
 
 ###
 POST http://localhost:8080/api/courses/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMDIxM3RuMDM4QHV0ZXouZWR1Lm14IiwiaWF0IjoxNjc4MjE0NDk5LCJleHAiOjE2NzgyMTYyOTl9.FMmRNCYysFdv4Ry3spd1rSCFWZbg3YnPivSByCvSPqw
 Content-Type: application/json
 
 {

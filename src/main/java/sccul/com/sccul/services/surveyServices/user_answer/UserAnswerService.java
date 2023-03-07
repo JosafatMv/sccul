@@ -15,7 +15,8 @@ import sccul.com.sccul.utils.CustomResponse;
 public class UserAnswerService {
     @Autowired
     private UserAnswerRepository repository;
-
+/*
+Creo que es innecesario el getAll
     //get all
     @Transactional(readOnly = true)
     public CustomResponse<List<UserAnswer>> getAll(){
@@ -26,7 +27,7 @@ public class UserAnswerService {
                 "Ok"
         );
     }
-
+*/
     //get one
     @Transactional(readOnly = true)
     public CustomResponse<UserAnswer> getOne(long id){
@@ -72,7 +73,10 @@ public class UserAnswerService {
         );
     }
 
-    //findByUserIdAndAnswerId
+   /* //findByUserIdAndAnswerId
+
+   Cuando lo hice tenia sentido ahora no lo veo
+
     @Transactional(readOnly = true)
     public CustomResponse<UserAnswer> findByUserIdAndAnswerId(long userId, long answerId){
         return new CustomResponse<>(
@@ -81,7 +85,7 @@ public class UserAnswerService {
                 200,
                 "Ok"
         );
-    }
+    }*/
     //findByUserIdAndSurveyId
     @Transactional(readOnly = true)
     public CustomResponse<List<UserAnswer>> findByUserIdAndSurveyId(long userId, long surveyId){
@@ -92,6 +96,9 @@ public class UserAnswerService {
                 "Ok"
         );
     }
+/*
+
+De nuevo no encuentro sentido en este metodo ahora
 
     //findBySurveyId
     @Transactional(readOnly = true)
@@ -103,5 +110,5 @@ public class UserAnswerService {
                 "Ok"
         );
     }
-
+*/
 }

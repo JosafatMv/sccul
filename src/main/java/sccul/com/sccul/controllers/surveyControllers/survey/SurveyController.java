@@ -19,6 +19,7 @@ public class SurveyController {
     @Autowired
     private SurveyService service;
 
+
     @GetMapping("/")
     public ResponseEntity<CustomResponse<List<Survey>>> getAll(){
         return new ResponseEntity<>(this.service.getAll(), HttpStatus.OK);
