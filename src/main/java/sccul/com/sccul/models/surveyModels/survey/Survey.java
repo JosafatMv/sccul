@@ -28,6 +28,7 @@ public class Survey {
     private Course course;
 
     @OneToMany(mappedBy = "survey")
+    @JsonIgnore
     private Set<Question> questions;
 
 }

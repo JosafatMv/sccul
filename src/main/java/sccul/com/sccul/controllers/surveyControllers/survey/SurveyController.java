@@ -26,12 +26,6 @@ public class SurveyController {
         return new ResponseEntity<>(this.service.getOne(id),HttpStatus.OK);
     }
 
-    //get by course id
-    @GetMapping("/course/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Survey>> getByCourseId(@PathVariable long id){
-        return new ResponseEntity<>(this.service.getByCourseId(id),HttpStatus.OK);
-    }
-
     //Insert
     @PostMapping("/")
     public ResponseEntity<CustomResponse<Survey>> insert(@RequestBody SurveyDto survey){

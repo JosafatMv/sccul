@@ -59,14 +59,6 @@ public class SurveyService {
     //insert
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<Survey> insert(Survey survey){
-        if(this.repository.countByCourseId(survey.getCourse().getId()) > 0){
-            return new CustomResponse<>(
-                    null,
-                    true,
-                    400,
-                    "Ya existe una encuesta para este curso"
-            );
-        }
         return new CustomResponse<>(
                 this.repository.save(survey),
                 false,
@@ -89,17 +81,6 @@ public class SurveyService {
 
         return new CustomResponse<>(
                 this.repository.save(survey),
-                false,
-                200,
-                "Ok"
-        );
-    }
-
-    //findby course id
-    @Transactional(readOnly = true)
-    public CustomResponse<Survey> findByCourseId(long id){
-        return new CustomResponse<>(
-                this.repository.findByCourseIdNative(id),
                 false,
                 200,
                 "Ok"

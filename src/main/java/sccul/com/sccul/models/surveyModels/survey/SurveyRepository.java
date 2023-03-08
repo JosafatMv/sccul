@@ -17,12 +17,4 @@ public interface SurveyRepository extends JpaRepository<Survey, Long>{
         nativeQuery = true
     )
     Integer countByCourseId(Long course_id);
-
-
-    //findby course id
-    @Query(
-        value = "SELECT * FROM surveys WHERE course_id = :course_id",
-        nativeQuery = true
-    )
-    Survey findByCourseIdNative(Long course_id);
 }

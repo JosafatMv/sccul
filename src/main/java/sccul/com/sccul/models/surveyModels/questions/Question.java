@@ -32,7 +32,6 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "survey_id", nullable = false)
-    @JsonIgnore
     private Survey survey;
 
     @OneToMany(mappedBy = "question")

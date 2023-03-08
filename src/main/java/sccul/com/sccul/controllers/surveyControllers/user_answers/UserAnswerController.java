@@ -34,10 +34,4 @@ public class UserAnswerController {
         return ResponseEntity.ok(this.service.findByUserIdAndSurveyId(id, id2));
     }
 
-    //insertAll
-    @PostMapping("/all")
-    public ResponseEntity<CustomResponse<List<UserAnswer>>> insertAll(@RequestBody List<UserAnswer> userAnswers){
-        return ResponseEntity.ok(this.service.insertAll(userAnswers));
-    }
-
 }
