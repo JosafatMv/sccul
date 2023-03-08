@@ -20,13 +20,13 @@ public class UserAnswerController {
     public ResponseEntity<CustomResponse<UserAnswer>> getByid(@PathVariable long id){
         return ResponseEntity.ok(this.service.getOne(id));
     }
-    @PostMapping("")
+    @PostMapping("/")
     public ResponseEntity<CustomResponse<UserAnswer>> insert(@RequestBody UserAnswer userAnswer){
         return ResponseEntity.ok(this.service.insert(userAnswer));
     }
-    @GetMapping("/count/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Long>> CountByAnswer(@PathVariable long id){
-        return ResponseEntity.ok(this.service.countByAnswerId(id));
+    @GetMapping("/count/question/{id:[0-9]+}/answer/{id2:[0-9]+}")
+    public ResponseEntity<CustomResponse<Integer>> countByQuestionIdAndAnswer(@PathVariable long id, @PathVariable int id2){
+        return ResponseEntity.ok(this.service.countByQuestionIdAndAnswer(id, id2));
     }
 
     @GetMapping("/user/{id:[0-9]+}/survey/{id2:[0-9]+}")

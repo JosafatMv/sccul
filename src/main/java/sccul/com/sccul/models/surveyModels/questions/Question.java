@@ -6,12 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sccul.com.sccul.models.surveyModels.answer.Answer;
+
 import sccul.com.sccul.models.surveyModels.survey.Survey;
 
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import sccul.com.sccul.models.surveyModels.user_answer.UserAnswer;
 
 @Entity
 @Table(name="questions")
@@ -35,6 +36,6 @@ public class Question {
 
     @OneToMany(mappedBy = "question")
     @JsonIgnore
-    private Set<Answer> answers;
+    private Set<UserAnswer> userAnswers;
 
 }

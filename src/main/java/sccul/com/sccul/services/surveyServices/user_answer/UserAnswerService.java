@@ -62,11 +62,11 @@ Creo que es innecesario el getAll
     //Creo que el update no es necesario
 
 
-    //get countByanserid
+    //get countByQuestionIdAndAnswer
     @Transactional(readOnly = true)
-    public CustomResponse<Long> countByAnswerId(long id){
+    public CustomResponse<Integer> countByQuestionIdAndAnswer(long idQuestion, int answer){
         return new CustomResponse<>(
-                this.repository.countByAnswerId(id),
+                this.repository.countByQuestionIdAndAnswer(idQuestion, answer),
                 false,
                 200,
                 "Ok"

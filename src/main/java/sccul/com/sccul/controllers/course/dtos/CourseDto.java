@@ -25,7 +25,7 @@ public class CourseDto {
     @Size(max = 255, message = "La imagen debe tener máximo 255 caracteres")
     private String image;
 
-    @NotEmpty(message = "Campo obligatorio")
+    @NotNull(message = "Campo obligatorio")
     @DecimalMin(value = "0.0", message = "El precio debe ser mayor o igual a 0.0")
     private Double price;
 

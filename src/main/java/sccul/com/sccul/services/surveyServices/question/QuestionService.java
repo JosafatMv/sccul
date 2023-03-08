@@ -17,12 +17,23 @@ public class QuestionService {
     @Autowired
     private QuestionRepository repository;
 
+
+    //get by id
+    @Transactional(readOnly = true)
+    public CustomResponse<Question> getById(long id){
+        return new CustomResponse<>(
+                this.repository.findById(id).get(),
+                false,
+                200,
+                "Ok"
+        );
+    }
     
     //get por survey
     @Transactional(readOnly = true)
     public CustomResponse<List<Question>> getBySurveyId(long survey_id){
         return new CustomResponse<>(
-                this.repository.findBySurveyId(survey_id),
+                this.repository.findBySurveyId(survey_id).get(),
                 false,
                 200,
                 "Ok"
@@ -67,5 +78,7 @@ public class QuestionService {
                 "Ok"
         );
     }
+
+    //
 
 }

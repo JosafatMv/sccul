@@ -16,16 +16,27 @@ public class SurveyService {
     @Autowired
     private SurveyRepository repository;
 
+//    @Transactional(readOnly = true)
+//    public CustomResponse<List<Survey>> getAll(){
+//        return new CustomResponse<>(
+//                this.repository.findAll(),
+//                false,
+//                200,
+//                "Ok"
+//        );
+//    }
+//
+
+    //get by course id
     @Transactional(readOnly = true)
-    public CustomResponse<List<Survey>> getAll(){
+    public CustomResponse<Survey> getByCourseId(long id){
         return new CustomResponse<>(
-                this.repository.findAll(),
+                this.repository.findByCourseId(id).get(),
                 false,
                 200,
                 "Ok"
         );
     }
-
     //get one survey
     @Transactional(readOnly = true)
     public CustomResponse<Survey> getOne(long id){
@@ -45,7 +56,7 @@ public class SurveyService {
                 "Ok"
         );
     }
-
+    //insert
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<Survey> insert(Survey survey){
         return new CustomResponse<>(

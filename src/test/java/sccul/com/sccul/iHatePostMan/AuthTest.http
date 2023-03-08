@@ -1,7 +1,7 @@
-POST http://localhost:8080/api/auth/login HTTP/1.1
+POST http://localhost:8080/api/auth/web/login HTTP/1.1
 Content-Type: application/json
 
 {
   "username": "20213tn038@utez.edu.mx",
-  "password": "12345678"
+  "password": "123456"
 }

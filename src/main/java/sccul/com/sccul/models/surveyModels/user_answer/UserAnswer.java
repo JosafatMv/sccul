@@ -2,7 +2,9 @@ package sccul.com.sccul.models.surveyModels.user_answer;
 
 import jakarta.persistence.*;
 import lombok.*;
-import sccul.com.sccul.models.surveyModels.answer.Answer;
+
+import sccul.com.sccul.models.surveyModels.questions.Question;
+
 import sccul.com.sccul.models.user.User;
 
 @Entity
@@ -21,7 +23,10 @@ public class UserAnswer {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "answer_id", nullable = false)
-    private Answer answer;
+    @Column(name = "answer",nullable = false)
+    private int answer;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
 }
