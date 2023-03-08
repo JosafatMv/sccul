@@ -17,6 +17,16 @@ public class QuestionService {
     @Autowired
     private QuestionRepository repository;
 
+    //get all
+    @Transactional(readOnly = true)
+    public CustomResponse<List<Question>> getAll(){
+        return new CustomResponse<>(
+                this.repository.findAll(),
+                false,
+                200,
+                "Ok"
+        );
+    }
 
     //get by id
     @Transactional(readOnly = true)

@@ -59,6 +59,7 @@ public class Course {
     private Set<Section> sections;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private Set<Survey> surveys;
 
     @OneToMany(mappedBy = "course")

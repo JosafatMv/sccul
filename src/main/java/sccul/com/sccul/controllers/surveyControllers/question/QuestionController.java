@@ -16,6 +16,12 @@ public class QuestionController {
     @Autowired
     private QuestionService service;
 
+    //get all
+    @GetMapping("/")
+    public ResponseEntity<CustomResponse<List<Question>>> getAll(){
+        return ResponseEntity.ok(this.service.getAll());
+    }
+
     @GetMapping("/bysurvey/{id:[0-9]+}")
     public ResponseEntity<CustomResponse<List<Question>>> getBySurveyId(@PathVariable long id){
         return ResponseEntity.ok(this.service.getBySurveyId(id));

@@ -48,9 +48,17 @@ Creo que es innecesario el getAll
         );
     }
 
-    //insert
+    //insert que verifica que el usuario solo haya contstestado una vez
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<UserAnswer> insert(UserAnswer userAnswer){
+        if(this.repository.countByUserIdAndQuestionId(userAnswer.getUser().getId(),userAnswer.getQuestion().getId())>0){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    400,
+                    "El usuario ya ha contestado esta pregunta"
+            );
+        }
         return new CustomResponse<>(
                 this.repository.save(userAnswer),
                 false,
@@ -91,6 +99,17 @@ Creo que es innecesario el getAll
     public CustomResponse<List<UserAnswer>> findByUserIdAndSurveyId(long userId, long surveyId){
         return new CustomResponse<>(
                 this.repository.findByUserIdAndSurveyId(userId, surveyId),
+                false,
+                200,
+                "Ok"
+        );
+    }
+
+    //inserar varios
+    @Transactional(rollbackFor = {Exception.class})
+    public CustomResponse<List<UserAnswer>> insertAll(List<UserAnswer> userAnswers){
+        return new CustomResponse<>(
+                this.repository.saveAll(userAnswers),
                 false,
                 200,
                 "Ok"
