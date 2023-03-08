@@ -33,5 +33,5 @@ public class UserAnswerController {
     public ResponseEntity<CustomResponse<List< UserAnswer>>> getByUserAndSurvey(@PathVariable long id, @PathVariable long id2){
         return ResponseEntity.ok(this.service.findByUserIdAndSurveyId(id, id2));
     }
-
+    //hola
 }
