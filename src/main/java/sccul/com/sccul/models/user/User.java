@@ -3,6 +3,8 @@ package sccul.com.sccul.models.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import sccul.com.sccul.models.bank_card.BankCard;
 import sccul.com.sccul.models.comment.Comment;
 import sccul.com.sccul.models.inscription.Inscription;
@@ -43,13 +45,13 @@ public class User {
     @Column(name = "phone_number", nullable = false, length = 20, unique = true)
     private String phoneNumber;
 
-    @Column(name = "role", nullable = false, length = 30)
+    @Column(name = "role", nullable = false, length = 30, columnDefinition = "varchar(30) default 'user' ", insertable = false, updatable = false)
     private String role;
 
     @Column(name = "image", length = 255)
     private String image;
 
-    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
+    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1", insertable = false, updatable = false)
     private Boolean status;
 
     @OneToMany(mappedBy = "user")
