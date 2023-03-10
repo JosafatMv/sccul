@@ -114,19 +114,30 @@ De nuevo no encuentro sentido en este metodo ahora
     //saveALl
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<List<UserAnswer>> saveAll(List<UserAnswer> userAnswers){
-        if(userAnswers.size()>10){
+        for (int i = 0; i < userAnswers.size(); i++) {
+            if(this.repository.countByQuestionIdAndUser(userAnswers.get(i).getQuestion().getId(), userAnswers.get(i).getUser().getId())!=0){
+                return new CustomResponse<>(
+                        null,
+                        true,
+                        400,
+                        "No puede contestar 2 veces la misma encuesta"
+                );
+            }
+        }
+
+        if(userAnswers.size()!=10){
             return new CustomResponse<>(
                     null,
                     true,
                     400,
-                    "No se pueden guardar mas de 10 respuestas"
+                    "No se pueden guardar mas o menos de 10 respuestas"
             );
-        }
+        }else {
         return new CustomResponse<>(
                 this.repository.saveAllAndFlush(userAnswers),
                 false,
                 200,
                 "Ok"
-        );
+        );}
     }
 }

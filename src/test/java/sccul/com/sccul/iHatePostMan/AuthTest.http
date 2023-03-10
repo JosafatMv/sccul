@@ -5,5 +5,6 @@ Content-Type: application/json
   "username": "20213tn038@utez.edu.mx",
   "password": "123456"
 }
-#
-#hola
+###
+//INSERT INTO `sccul`.`users` (`email`, `lastname`, `name`, `password`, `phone_number`, `role`, `status`, `surname`) VALUES ('20213tn038@utez.edu.mx', 'De Jesus', 'David', '$2a$10$KRJ.hRwrWmOEAHchLZQfr.oRoyWDQ08QgnJAHqOhb848IhI7zP9Aa', '7774239270', 'admin', '1', 'Rosales');
+
