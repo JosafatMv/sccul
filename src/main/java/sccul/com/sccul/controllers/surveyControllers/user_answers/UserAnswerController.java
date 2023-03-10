@@ -34,4 +34,10 @@ public class UserAnswerController {
         return ResponseEntity.ok(this.service.findByUserIdAndSurveyId(id, id2));
     }
     //holaxd
+
+    //saveAll
+    @PostMapping("/saveAll")
+    public ResponseEntity<CustomResponse<List<UserAnswer>>> saveAll(@RequestBody List<UserAnswer> userAnswers){
+        return ResponseEntity.ok(this.service.saveAll(userAnswers));
+    }
 }

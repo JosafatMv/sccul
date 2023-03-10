@@ -111,4 +111,22 @@ De nuevo no encuentro sentido en este metodo ahora
         );
     }
 */
+    //saveALl
+    @Transactional(rollbackFor = {Exception.class})
+    public CustomResponse<List<UserAnswer>> saveAll(List<UserAnswer> userAnswers){
+        if(userAnswers.size()>10){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    400,
+                    "No se pueden guardar mas de 10 respuestas"
+            );
+        }
+        return new CustomResponse<>(
+                this.repository.saveAllAndFlush(userAnswers),
+                false,
+                200,
+                "Ok"
+        );
+    }
 }

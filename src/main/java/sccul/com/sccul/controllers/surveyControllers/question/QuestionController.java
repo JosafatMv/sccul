@@ -31,4 +31,9 @@ public class QuestionController {
         question.setId(id);
         return ResponseEntity.ok(this.service.update(question));
     }
+
+    @PostMapping("/saveAll")
+    public ResponseEntity<CustomResponse<List<Question>>> saveall(@RequestBody List<Question> questions){
+        return ResponseEntity.ok(this.service.saveAll(questions));
+    }
 }

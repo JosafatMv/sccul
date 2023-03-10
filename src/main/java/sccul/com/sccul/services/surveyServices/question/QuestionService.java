@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import sccul.com.sccul.models.surveyModels.questions.Question;
 import sccul.com.sccul.models.surveyModels.questions.QuestionRepository;
+import sccul.com.sccul.models.surveyModels.survey.SurveyRepository;
 import sccul.com.sccul.utils.CustomResponse;
 
 @Service
@@ -16,7 +17,8 @@ public class QuestionService {
     
     @Autowired
     private QuestionRepository repository;
-
+    @Autowired
+    private SurveyRepository surveyRepository;
 
     //get by id
     @Transactional(readOnly = true)
@@ -42,6 +44,14 @@ public class QuestionService {
     //insert 
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<Question> insert(Question question){
+        if(!this.surveyRepository.existsById(question.getSurvey().getId())){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    404,
+                    "El survey no existe"
+            );
+        }
         if(this.repository.countBySurveyId(question.getSurvey().getId()) >= 10){
             return new CustomResponse<>(
                     null,
@@ -79,6 +89,24 @@ public class QuestionService {
         );
     }
 
-    //
+    //saveAll
+    @Transactional(rollbackFor = {Exception.class})
+    public CustomResponse<List<Question>> saveAll(List<Question> questions){
+        if(questions.size()>10){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    400,
+                    "No puedes asignar mas de 10 preguntas a un survey"
+            );
+
+        }
+        return new CustomResponse<>(
+                this.repository.saveAllAndFlush(questions),
+                false,
+                200,
+                "OK"
+        );
+    }
 
 }

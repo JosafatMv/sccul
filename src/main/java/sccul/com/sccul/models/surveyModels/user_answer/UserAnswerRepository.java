@@ -41,4 +41,6 @@ public interface UserAnswerRepository extends JpaRepository<UserAnswer, Long> {
     )
     int countByQuestionIdAndAnswer(@Param("question_id") Long question_id, @Param("answer") int answer);
 
+    @Override
+    <S extends UserAnswer> List<S> saveAllAndFlush(Iterable<S> entities);
 }
