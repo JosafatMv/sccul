@@ -133,5 +133,24 @@ public class CourseService {
         );
     }
 
+    @Transactional(rollbackFor = {Exception.class})
+    public CustomResponse<Integer> changeStatus(Course course){
+        if(!this.repository.existsById(course.getId())){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    404,
+                    "El curso no existe"
+            );
+        }
+
+        return new CustomResponse<>(
+                this.repository.updateStatusById(course.getStatus(), course.getId()),
+                false,
+                200,
+                "Estado actualizado"
+        );
+    }
+
 
 }

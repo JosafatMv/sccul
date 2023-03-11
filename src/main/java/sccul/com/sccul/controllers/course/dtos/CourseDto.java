@@ -35,7 +35,9 @@ public class CourseDto {
     @DecimalMax(value = "100.0", message = "El descuento debe ser menor o igual a 100")
     private Double discount;
 
+    private Integer status;
+
     public Course castToCourse(){
-        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(),0,0.0,0, getCategory(), null, null, null, null, null);
+        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(), getStatus(),0,0.0,0, getCategory(), null, null, null, null, null);
     }
 }

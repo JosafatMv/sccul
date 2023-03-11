@@ -25,7 +25,7 @@ public class Category {
     private String name;
 
     @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1")
-    private Boolean status;
+    private Integer status;
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore

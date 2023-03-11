@@ -17,7 +17,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query(
             value = "UPDATE categories SET status = :status WHERE id = :id",nativeQuery = true
     )
-    int updateStatusById(@Param("status") boolean status, @Param("id") Long id);
+    int updateStatusById(@Param("status") int status, @Param("id") Long id);
 
 
 }

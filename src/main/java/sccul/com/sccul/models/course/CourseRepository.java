@@ -42,4 +42,10 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
             value = "SELECT COUNT(*) FROM inscriptions WHERE course_id = :id AND status = 'comprado'",nativeQuery = true
     )
     Integer totalParticipantsByCourseId(@Param("id") Long id);
+
+    @Modifying
+    @Query(
+            value = "UPDATE courses SET status = :status WHERE id = :id",nativeQuery = true
+    )
+    int updateStatusById(@Param("status") int status, @Param("id") Long id);
 }

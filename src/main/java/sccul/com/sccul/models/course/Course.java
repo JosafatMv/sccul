@@ -42,6 +42,9 @@ public class Course {
     @Column(name = "discount", columnDefinition = "double")
     private Double discount;
 
+    @Column(name = "status", nullable = false, columnDefinition = "tinyint default 1", insertable = false, updatable = false)
+    private Integer status;
+
     @Formula("(select count(*) from scores s where s.course_id = id)")
     private Integer totalRatings;
 

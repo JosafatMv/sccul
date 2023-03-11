@@ -14,7 +14,7 @@ import sccul.com.sccul.models.category.Category;
 public class CategoryDto {
 
     public CategoryDto(){
-        this.status = true;
+        this.status = 1;
     }
 
     private Long id;
@@ -23,7 +23,7 @@ public class CategoryDto {
     @Size(max = 100, message = "El nombre de la categoría debe tener máximo 100 caracteres")
     private String name;
 
-    private Boolean status;
+    private Integer status;
 
 
     public Category castToCategory() {
