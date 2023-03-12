@@ -23,7 +23,7 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "course_id", nullable = false)
     @JsonIgnore
     private Course course;

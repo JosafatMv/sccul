@@ -20,12 +20,6 @@ public class QuestionController {
     public ResponseEntity<CustomResponse<List<Question>>> getBySurveyId(@PathVariable long id){
         return ResponseEntity.ok(this.service.getBySurveyId(id));
     }
-
-    @PostMapping("/")
-    public ResponseEntity<CustomResponse<Question>> insert(@RequestBody Question question){
-        return ResponseEntity.ok(this.service.insert(question));
-    }
-
     @PutMapping("/{id:[0-9]+}")
     public ResponseEntity<CustomResponse<Question>> update(@PathVariable long id, @RequestBody Question question){
         question.setId(id);

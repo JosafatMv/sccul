@@ -70,8 +70,8 @@ public class User {
     @JsonIgnore
     private Set<Comment> comments;
 
-    @OneToOne(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private UserAnswer userAnswer;
+    private Set<UserAnswer> userAnswer;
 
 }

@@ -18,15 +18,8 @@ import java.util.List;
 public class SurveyController {
     @Autowired
     private SurveyService service;
-
-
-    //get one by id
-    @GetMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Survey>> getOne(@PathVariable long id){
-        return new ResponseEntity<>(this.service.getOne(id),HttpStatus.OK);
-    }
-
-    //get by course id
+    
+    //Mejor usa el quet questions by survey id del controller questions
     @GetMapping("/course/{id:[0-9]+}")
     public ResponseEntity<CustomResponse<Survey>> getByCourseId(@PathVariable long id){
         return new ResponseEntity<>(this.service.getByCourseId(id),HttpStatus.OK);
@@ -37,14 +30,6 @@ public class SurveyController {
     public ResponseEntity<CustomResponse<Survey>> insert(@RequestBody SurveyDto survey){
         return new ResponseEntity<>(this.service.insert(survey.castToSurvey()), HttpStatus.OK);
     }
-    //Update
-    @PutMapping("/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Survey>> update(@PathVariable long id, @RequestBody SurveyDto surveyD){
-        Survey survey = surveyD.castToSurvey();
-        survey.setId(id);
-        return new ResponseEntity<>(this.service.update(survey), HttpStatus.OK);
-    }
-
 
 
 }

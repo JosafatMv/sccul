@@ -1,6 +1,7 @@
 package sccul.com.sccul.models.surveyModels.questions;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,10 +33,10 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "survey_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Survey survey;
 
     @OneToMany(mappedBy = "question")
     @JsonIgnore
     private Set<UserAnswer> userAnswers;
-
 }

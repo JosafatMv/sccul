@@ -41,33 +41,7 @@ public class QuestionService {
                 "Ok"
         );
     }
-    //insert 
-    @Transactional(rollbackFor = {Exception.class})
-    public CustomResponse<Question> insert(Question question){
-        if(!this.surveyRepository.existsById(question.getSurvey().getId())){
-            return new CustomResponse<>(
-                    null,
-                    true,
-                    404,
-                    "El survey no existe"
-            );
-        }
-        if(this.repository.countBySurveyId(question.getSurvey().getId()) >= 10){
-            return new CustomResponse<>(
-                    null,
-                    true,
-                    400,
-                    "No se pueden agregar mas de 10 preguntas"
-            );
-        }
 
-        return new CustomResponse<>(
-                this.repository.save(question),
-                false,
-                200,
-                "Ok"
-        );
-    }
     
     //Update
     @Transactional(rollbackFor = {Exception.class})
@@ -92,12 +66,20 @@ public class QuestionService {
     //saveAll
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<List<Question>> saveAll(List<Question> questions){
-        if(questions.size()>10){
+        if(this.repository.countBySurveyId(questions.get(1).getSurvey().getId()) >= 10){
             return new CustomResponse<>(
                     null,
                     true,
                     400,
-                    "No puedes asignar mas de 10 preguntas a un survey"
+                    "No se pueden agregar mas de 10 preguntas"
+            );
+        }
+        if(questions.size()!=10){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    400,
+                    "No puedes asignar mas o menos de 10 preguntas a un survey"
             );
 
         }

@@ -3,6 +3,7 @@ package sccul.com.sccul.services.surveyServices.survey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sccul.com.sccul.models.course.CourseRepository;
 import sccul.com.sccul.models.surveyModels.survey.Survey;
 import sccul.com.sccul.models.surveyModels.survey.SurveyRepository;
 import sccul.com.sccul.utils.CustomResponse;
@@ -16,16 +17,8 @@ public class SurveyService {
     @Autowired
     private SurveyRepository repository;
 
-//    @Transactional(readOnly = true)
-//    public CustomResponse<List<Survey>> getAll(){
-//        return new CustomResponse<>(
-//                this.repository.findAll(),
-//                false,
-//                200,
-//                "Ok"
-//        );
-//    }
-//
+    @Autowired
+    private CourseRepository courseRepository;
 
     //get by course id
     @Transactional(readOnly = true)
@@ -59,6 +52,22 @@ public class SurveyService {
     //insert
     @Transactional(rollbackFor = {Exception.class})
     public CustomResponse<Survey> insert(Survey survey){
+        if(!this.courseRepository.existsById(survey.getCourse().getId())){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    404,
+                    "El curso no existe"
+            );
+        }
+        if(this.repository.existsByCourseId(survey.getCourse().getId())){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    404,
+                    "Ya existe una encuesta para este curso"
+            );
+        }
         return new CustomResponse<>(
                 this.repository.save(survey),
                 false,

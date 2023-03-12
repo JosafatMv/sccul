@@ -10,8 +10,13 @@ import org.springframework.data.repository.query.Param;
 public interface QuestionRepository extends JpaRepository<Question, Long>{
     //query para buscar questions por encuesta
     Optional<Question> findById(Long id);
-    Optional<List<Question>> findBySurveyId(Long id);
-
+    //Optional<List<Question>> findBySurveyId(Long id);
+    //find by survey id
+    @Query(
+        value = "SELECT * FROM questions WHERE survey_id = :survey_id",
+        nativeQuery = true
+    )
+    Optional<List<Question>> findBySurveyId(@Param("survey_id") Long survey_id);
 
     //contador de preguntas por encuesta
     @Query(
@@ -20,4 +25,6 @@ public interface QuestionRepository extends JpaRepository<Question, Long>{
     )
     Long countBySurveyId(@Param("survey_id") Long survey_id);
 
+    @Override
+    boolean existsById(Long aLong);
 }

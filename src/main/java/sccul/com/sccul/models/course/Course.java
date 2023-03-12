@@ -61,8 +61,8 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<Section> sections;
 
-    @OneToMany(mappedBy = "course")
-    private Set<Survey> surveys;
+    @OneToOne(mappedBy = "course")
+    private Survey surveys;
 
     @OneToMany(mappedBy = "course")
     private Set<Score> scores;
@@ -72,5 +72,7 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     private Set<Inscription> inscriptions;
+
+
 
 }
