@@ -15,5 +15,8 @@ public interface SectionRepository extends JpaRepository<Section, Long> {
     boolean existsById(Long id);
     boolean existsByName(String name);
 
+    boolean existsByNameAndCourseId(String name, Long id);
+
+    boolean existsByNameAndCourseIdAndIdNot(String name, Long id, Long idNot);
 
 }

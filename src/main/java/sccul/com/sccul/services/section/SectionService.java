@@ -46,7 +46,7 @@ public class SectionService {
             );
         }
 
-        if (this.repository.existsByName(section.getName())) {
+        if (this.repository.existsByNameAndCourseId(section.getName(), section.getCourse().getId())) {
             return new CustomResponse<>(
                     null,
                     true,
@@ -68,7 +68,7 @@ public class SectionService {
     //update
     @Transactional(rollbackFor = {SQLException.class})
     public CustomResponse<Section> update(long id, Section section){
-        if (this.repository.existsByName(section.getName())) {
+        if (this.repository.existsByNameAndCourseIdAndIdNot(section.getName(), section.getCourse().getId(), id)) {
             return new CustomResponse<>(
                     null,
                     true,

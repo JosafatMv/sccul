@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sccul.com.sccul.controllers.course.dtos.ChangeDiscountDto;
 import sccul.com.sccul.controllers.course.dtos.CourseDto;
+import sccul.com.sccul.controllers.course.dtos.CourseRegisterDto;
 import sccul.com.sccul.models.course.Course;
 import sccul.com.sccul.services.courses.CourseService;
 import sccul.com.sccul.utils.CustomResponse;
@@ -31,7 +32,7 @@ public class CourseController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<CustomResponse<Course>> insert(@Valid @RequestBody CourseDto course) {
+    public ResponseEntity<CustomResponse<Course>> insert(@Valid @RequestBody CourseRegisterDto course) {
         return new ResponseEntity<>(this.service.insert(course.castToCourse()), HttpStatus.CREATED);
     }
 
