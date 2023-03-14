@@ -5,12 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
+import sccul.com.sccul.models.course.Course;
 import sccul.com.sccul.models.surveyModels.questions.Question;
 
 import sccul.com.sccul.models.user.User;
-
-import java.util.Set;
-
 @Entity
 @Table(name = "user_answers")
 @AllArgsConstructor
@@ -35,4 +33,10 @@ public class UserAnswer {
     @JoinColumn(name = "question_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Question question;
+
+    //course
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Course course;
 }

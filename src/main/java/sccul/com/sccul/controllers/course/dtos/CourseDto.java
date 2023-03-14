@@ -38,6 +38,6 @@ public class CourseDto {
     private Integer status;
 
     public Course castToCourse(){
-        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(), getStatus(),0,0.0,0, getCategory(), null, null, null, null, null);
+        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(), getStatus(),0,0.0,0, getCategory(), null, null, null, null,null, null);
     }
 }

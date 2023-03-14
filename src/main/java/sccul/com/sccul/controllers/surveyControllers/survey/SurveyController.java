@@ -19,10 +19,11 @@ public class SurveyController {
     @Autowired
     private SurveyService service;
     
-    //Mejor usa el quet questions by survey id del controller questions
-    @GetMapping("/course/{id:[0-9]+}")
-    public ResponseEntity<CustomResponse<Survey>> getByCourseId(@PathVariable long id){
-        return new ResponseEntity<>(this.service.getByCourseId(id),HttpStatus.OK);
+
+    //get all
+    @GetMapping("/")
+    public ResponseEntity<CustomResponse<List<Survey>>> getAll(){
+        return new ResponseEntity<>(this.service.getAll(),HttpStatus.OK);
     }
 
     //Insert

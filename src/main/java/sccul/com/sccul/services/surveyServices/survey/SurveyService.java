@@ -20,17 +20,21 @@ public class SurveyService {
     @Autowired
     private CourseRepository courseRepository;
 
-    //get by course id
+
+
+    //get all
     @Transactional(readOnly = true)
-    public CustomResponse<Survey> getByCourseId(long id){
+    public CustomResponse<List<Survey>> getAll(){
         return new CustomResponse<>(
-                this.repository.findByCourseId(id).get(),
+                this.repository.findAll(),
                 false,
                 200,
                 "Ok"
         );
     }
-    //get one survey
+
+
+    //get one survey by id
     @Transactional(readOnly = true)
     public CustomResponse<Survey> getOne(long id){
         if(!this.repository.existsById(id)){
@@ -49,37 +53,11 @@ public class SurveyService {
                 "Ok"
         );
     }
-    //insert
-    @Transactional(rollbackFor = {Exception.class})
-    public CustomResponse<Survey> insert(Survey survey){
-        if(!this.courseRepository.existsById(survey.getCourse().getId())){
-            return new CustomResponse<>(
-                    null,
-                    true,
-                    404,
-                    "El curso no existe"
-            );
-        }
-        if(this.repository.existsByCourseId(survey.getCourse().getId())){
-            return new CustomResponse<>(
-                    null,
-                    true,
-                    404,
-                    "Ya existe una encuesta para este curso"
-            );
-        }
-        return new CustomResponse<>(
-                this.repository.save(survey),
-                false,
-                200,
-                "Ok"
-        );
-    }
 
-    //Update
-    @Transactional(rollbackFor = {Exception.class})
-    public CustomResponse<Survey> update(Survey survey){
-        if(!this.repository.existsById(survey.getId())){
+    //get one survey by name
+    @Transactional(readOnly = true)
+    public CustomResponse<Survey> getOne(String name){
+        if(!this.repository.existsByName(name)){
             return new CustomResponse<>(
                     null,
                     true,
@@ -88,6 +66,24 @@ public class SurveyService {
             );
         }
 
+        return new CustomResponse<>(
+                this.repository.findByName(name).get(),
+                false,
+                200,
+                "Ok"
+        );
+    }
+    //insert
+    @Transactional(rollbackFor = {Exception.class})
+    public CustomResponse<Survey> insert(Survey survey){
+        if(this.repository.existsByName(survey.getName())){
+            return new CustomResponse<>(
+                    null,
+                    true,
+                    400,
+                    "Ya existe una encuesta con ese nombre"
+            );
+        }
         return new CustomResponse<>(
                 this.repository.save(survey),
                 false,

@@ -15,9 +15,9 @@ public class SurveyDto {
     private Long id;
 
     @NotNull(message = "El id del curso no puede ser nulo")
-    private Course course;
+    private String name;
 
     public Survey castToSurvey() {
-        return new Survey(getId(), getCourse(), null);
+        return new Survey(getId(), getName(), null,null);
     }
 }

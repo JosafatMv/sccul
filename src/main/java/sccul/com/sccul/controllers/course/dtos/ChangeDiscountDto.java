@@ -19,6 +19,6 @@ public class ChangeDiscountDto {
     private Double discount;
 
     public Course castToCourse(){
-        return new Course(getId(), null, null, null, 0.0, getDiscount(), null, 0, 0.0, 0, null, null, null, null, null, null);
+        return new Course(getId(), null, null, null, 0.0, getDiscount(), null, 0, 0.0, 0, null, null, null, null, null, null, null);
     }
 }

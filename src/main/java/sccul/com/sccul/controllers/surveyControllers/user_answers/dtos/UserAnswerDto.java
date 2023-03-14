@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sccul.com.sccul.models.course.Course;
 import sccul.com.sccul.models.surveyModels.questions.Question;
 import sccul.com.sccul.models.surveyModels.user_answer.UserAnswer;
 import sccul.com.sccul.models.user.User;
@@ -22,12 +23,13 @@ public class UserAnswerDto{
     private int answer;
     private Question question;
     private User user;
+    private Course course;
 
     public UserAnswer castToUserAnswer() {
         if(getAnswer()>3 || getAnswer()<1){
             return null;
         }
-        return new UserAnswer(getId(),getUser(),getAnswer(),getQuestion()
+        return new UserAnswer(getId(),getUser(),getAnswer(),getQuestion(),getCourse()
         );
     }
 }

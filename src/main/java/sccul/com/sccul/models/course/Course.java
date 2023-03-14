@@ -13,6 +13,7 @@ import sccul.com.sccul.models.inscription.Inscription;
 import sccul.com.sccul.models.score.Score;
 import sccul.com.sccul.models.section.Section;
 import sccul.com.sccul.models.surveyModels.survey.Survey;
+import sccul.com.sccul.models.surveyModels.user_answer.UserAnswer;
 
 import java.util.Set;
 
@@ -61,8 +62,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<Section> sections;
 
-    @OneToOne(mappedBy = "course")
-    private Survey surveys;
+    @ManyToOne
+    @JoinColumn(name = "survey_id", nullable = false)
+    private Survey survey;
 
     @OneToMany(mappedBy = "course")
     private Set<Score> scores;
@@ -73,6 +75,7 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<Inscription> inscriptions;
 
-
+    @OneToMany(mappedBy = "course")
+    private Set<UserAnswer> userAnswers;
 
 }

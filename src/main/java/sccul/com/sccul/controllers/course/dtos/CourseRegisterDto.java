@@ -47,6 +47,6 @@ public class CourseRegisterDto {
     private Set<Section> sections;
 
     public Course castToCourse(){
-        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(), getStatus(),0,0.0,0, getCategory(), getSections(), null, null, null, null);
+        return new Course(getId(), getName(), getDescription(), getImage(), getPrice(), getDiscount(), getStatus(),0,0.0,0, getCategory(), getSections(), null, null, null, null,null);
     }
 }

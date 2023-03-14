@@ -23,10 +23,12 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "course_id", nullable = false)
+    @Column(name = "name", nullable = false, length = 255)
+    private String name;
+
+    @OneToMany(mappedBy = "survey")
     @JsonIgnore
-    private Course course;
+    private Set<Course> courses;
 
     @OneToMany(mappedBy = "survey")
     @JsonIgnore
